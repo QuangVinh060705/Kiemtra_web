@@ -1,0 +1,6 @@
+@Kiemtra_web_HostAddress = http://localhost:5082
+
+GET {{Kiemtra_web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

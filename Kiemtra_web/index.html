@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý Hàng Hóa</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: left;
+      }
+      button {
+        margin: 5px;
+        padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Danh sách Hàng Hóa</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Mã</th>
+          <th>Tên</th>
+          <th>Số Lượng</th>
+          <th>Ghi Chú</th>
+          <th>Hành Động</th>
+        </tr>
+      </thead>
+      <tbody id="goodsTable"></tbody>
+    </table>
+
+    <h2>Thêm/Cập nhật Hàng Hóa</h2>
+    <input type="text" id="MaHangHoa" placeholder="Mã hàng hóa" />
+    <input type="text" id="TenHangHoa" placeholder="Tên hàng hóa" />
+    <input type="number" id="SoLuong" placeholder="Số lượng" />
+    <input type="text" id="ghi_chu" placeholder="Ghi chú" />
+    <button onclick="addOrUpdateHangHoa()">Lưu</button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
