@@ -1,0 +1,19 @@
+﻿@model Kiemtra_web.Models.Hang_hoa
+
+<h2>Thêm Hàng Hóa</h2>
+
+<form method="post" action="@Url.Action("Create", "HangHoaMVC")">
+    <div>
+        <label for="TenHangHoa">Tên Hàng Hóa:</label>
+        <input type="text" id="TenHangHoa" name="TenHangHoa" required />
+    </div>
+
+    <div>
+        <label for="GhiChu">Ghi Chú:</label>
+        <input type="text" id="GhiChu" name="GhiChu" />
+    </div>
+
+    <button type="submit">Thêm</button>
+</form>
+
+<a href="@Url.Action("Index", "HangHoaMVC")">Quay lại danh sách</a>

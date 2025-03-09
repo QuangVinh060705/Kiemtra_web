@@ -1,0 +1,10 @@
+﻿@model Kiemtra_web.Models.Hang_hoa
+
+<h2>Xác Nhận Xóa Hàng Hóa</h2>
+
+<p>Bạn có chắc chắn muốn xóa hàng hóa <strong>@Model.TenHangHoa</strong> không?</p>
+
+<form method="post" action="@Url.Action("Delete", "HangHoaMVC", new { id = Model.MaHangHoa })">
+    <button type="submit">Xóa</button>
+    <a href="@Url.Action("Index", "HangHoaMVC")">Hủy</a>
+</form>

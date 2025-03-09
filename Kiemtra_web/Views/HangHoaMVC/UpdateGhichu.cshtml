@@ -1,0 +1,14 @@
+﻿@model Kiemtra_web.Models.Hang_hoa
+
+<h2>Cập Nhật Ghi Chú</h2>
+
+<form method="post" action="@Url.Action("UpdateGhiChu", "HangHoaMVC", new { id = Model.MaHangHoa })">
+    <div>
+        <label for="GhiChu">Ghi Chú:</label>
+        <input type="text" id="GhiChu" name="ghiChu" value="@Model.ghi_chu" />
+    </div>
+
+    <button type="submit">Cập Nhật</button>
+</form>
+
+<a href="@Url.Action("Details", "HangHoaMVC", new { id = Model.MaHangHoa })">Quay lại chi tiết</a>

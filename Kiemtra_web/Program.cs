@@ -16,8 +16,11 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<HanghoaContext>(options =>
     options.UseSqlServer(connectionString));
 
-// Thêm dịch vụ Controllers
-builder.Services.AddControllers()
+// Đăng ký HttpClient để DI container có thể cung cấp dịch vụ HttpClient
+builder.Services.AddHttpClient();  // Đăng ký HttpClient
+
+// Thêm dịch vụ MVC (cho cả Views và Controllers)
+builder.Services.AddControllersWithViews()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.PropertyNamingPolicy = null; // Giữ nguyên tên thuộc tính trong JSON
@@ -31,23 +34,34 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
-        policy => policy.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
+        policy => policy.AllowAnyOrigin()     // Cho phép tất cả các nguồn
+                        .AllowAnyMethod()     // Cho phép tất cả các phương thức HTTP (GET, POST, PUT, DELETE...)
+                        .AllowAnyHeader());   // Cho phép tất cả các headers
 });
 
 var app = builder.Build();
 
 // Cấu hình Middleware
+app.UseRouting();
 
 // Bật Swagger UI
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseHttpsRedirection(); // Bật HTTPS
+// Bật HTTPS
+app.UseHttpsRedirection();
+
+// Áp dụng chính sách CORS trước Authorization
 app.UseCors("AllowAll");   // Áp dụng chính sách CORS
+
 app.UseAuthorization();
 
+// Cấu hình Route cho MVC (bao gồm cả Controller và View)
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=HangHoaMVC}/{action=Index}/{id?}");
+
+// Nếu bạn muốn dùng các endpoint Web API, bạn có thể sử dụng:
 app.MapControllers();
 
 app.Run();

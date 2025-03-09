@@ -1,0 +1,33 @@
+﻿@model List<Kiemtra_web.Models.Hang_hoa>
+
+<h2>Danh Sách Hàng Hóa</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên Hàng Hóa</th>
+            <th>Ghi Chú</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaHangHoa</td>
+                <td>@item.TenHangHoa</td>
+                <td>@item.ghi_chu</td>
+                <td>
+                    <a href="@Url.Action("Details", "HangHoaMVC", new { id = item.MaHangHoa })">Chi Tiết</a> |
+                    <a href="@Url.Action("Edit", "HangHoaMVC", new { id = item.MaHangHoa })">Sửa</a> |
+                    <form method="post" action="@Url.Action("Delete", "HangHoaMVC", new { id = item.MaHangHoa })" style="display:inline;">
+                        <button type="submit">Xóa</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create", "HangHoaMVC")">Thêm Hàng Hóa Mới</a>
